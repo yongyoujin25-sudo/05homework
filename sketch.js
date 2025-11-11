@@ -3,8 +3,8 @@ let moverB
 
 function setup() {
   createCanvas(640, 240);
-  moverA = new Mover();
-  moverB = new Mover();
+  moverA = new Mover(width / 2, 30,1);
+  moverB = new Mover(100,100,10);
   createP("Click mouse to apply wind force.");
 }
 
@@ -33,13 +33,6 @@ function draw() {
   moverA.update();
   moverA.show();
   moverA.checkEdges();
-
-  let friction = mover.velocity.copy();
-  friction.mult(-1);
-  friction.normalize();
-  friction.mult(0.05);
-  moverA.applyForce(friction);
-  moverB.applyForce(friction);
 
   let wind = createVector(map(noise(frameCount*0.01),0,1,-0.2,0.2),0);
   moverA.applyForce(wind);
