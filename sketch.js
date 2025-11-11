@@ -1,8 +1,10 @@
-let mover;
+let moverA;
+let moverB
 
 function setup() {
   createCanvas(640, 240);
-  mover = new Mover();
+  moverA = new Mover();
+  moverB = new Mover();
   createP("Click mouse to apply wind force.");
 }
 
@@ -10,7 +12,8 @@ function draw() {
   background(255);
 
   let gravity = createVector(0, 0.1);
-  mover.applyForce(gravity);
+  moverA.applyForce(gravity);
+  moverB.applyForce(gravity);
 
   if (mouseIsPressed) {
     let wind;
@@ -19,20 +22,27 @@ function draw() {
     } else {
       wind = createVector(0.1, 0);
     }
-    mover.applyForce(wind);
+    moverA.applyForce(wind);
+    moverB.applyForce(wind);
   }
 
-  mover.update();
-  mover.show();
-  mover.checkEdges();
+  moverA.update();
+  moverA.show();
+  moverA.checkEdges();
+
+  moverA.update();
+  moverA.show();
+  moverA.checkEdges();
 
   let friction = mover.velocity.copy();
   friction.mult(-1);
   friction.normalize();
   friction.mult(0.05);
-  mover.applyForce(friction);
+  moverA.applyForce(friction);
+  moverB.applyForce(friction);
 
   let wind = createVector(map(noise(frameCount*0.01),0,1,-0.2,0.2),0);
-  mover.applyForce(wind);
+  moverA.applyForce(wind);
+  moverB.applyForce(wind);
 
 }
