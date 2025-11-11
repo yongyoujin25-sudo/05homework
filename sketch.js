@@ -20,4 +20,11 @@ function draw() {
   mover.update();
   mover.show();
   mover.checkEdges();
+
+  let friction = mover.velocity.copy();
+  friction.mult(-1);
+  friction.normalize();
+  friction.mult(0.05);
+  mover.applyForce(friction);
+
 }
