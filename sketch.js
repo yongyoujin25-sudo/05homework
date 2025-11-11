@@ -13,7 +13,12 @@ function draw() {
   mover.applyForce(gravity);
 
   if (mouseIsPressed) {
-    let wind = createVector(0.1, 0);
+    let wind;
+    if (mouseX > width / 2) {
+      wind = createVector(-0.1, 0);
+    } else {
+      wind = createVector(0.1, 0);
+    }
     mover.applyForce(wind);
   }
 
