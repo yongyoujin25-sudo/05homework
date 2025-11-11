@@ -27,4 +27,7 @@ function draw() {
   friction.mult(0.05);
   mover.applyForce(friction);
 
+  let wind = createVector(map(noise(frameCount*0.01),0,1,-0.2,0.2),0);
+  mover.applyForce(wind);
+
 }
